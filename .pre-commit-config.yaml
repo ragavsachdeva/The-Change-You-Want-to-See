@@ -1,0 +1,26 @@
+repos:
+-   repo: https://github.com/pycqa/isort
+    rev: 5.10.1
+    hooks:
+      - id: isort
+        name: isort (python)
+        args:
+        - --profile=black
+        - --line-length=100
+        exclude: utils/voc_eval.py
+-   repo: https://github.com/psf/black
+    rev: 22.3.0
+    hooks:
+    -   id: black
+        args:
+        - --line-length=100
+        exclude: utils/voc_eval.py
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.4.0
+    hooks:
+    -   id: flake8
+        args:
+        - "--max-line-length=100"
+        - "--ignore=E203,W503,E266,E501,F541,E722"
+        exclude: utils/voc_eval.py
+

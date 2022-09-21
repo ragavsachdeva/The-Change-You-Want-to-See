@@ -1,0 +1,4 @@
+conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
+pip install segmentation-models-pytorch pytorch-lightning Cython matplotlib ninja opencv-python scikit-image wandb loguru yacs easydict kornia shapely pre-commit pycocotools h5py einops
+python -m pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu113/torch1.10/index.html
+

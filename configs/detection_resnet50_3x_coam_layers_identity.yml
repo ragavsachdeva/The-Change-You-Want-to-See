@@ -1,0 +1,90 @@
+encoder: resnet50
+attention: coam
+coam_layer_data: [3, [2048, 1024, 512], [256, 128, 64]]
+lr: 0.0001
+weight_decay: 0.0005
+batch_size: 16
+test_batch_size: 16
+num_dataloader_workers: 8
+datasets:
+  train_dataset:
+    name: coco_train
+    class: InpatinedCocoDataset
+    args:
+      path_to_dataset: /scratch/shared/beegfs/rs/coco_inpainted/v4/train
+      split: "train"
+      method: "centernet"
+      image_transformation: "identity"
+  val_dataset:
+    name: coco_val
+    class: InpatinedCocoDataset
+    args:
+      path_to_dataset: /scratch/shared/beegfs/rs/coco_inpainted/v4/train
+      split: "val"
+      method: "centernet"
+      image_transformation: "identity"
+  test_datasets:
+    - name: coco_test_small
+      class: InpatinedCocoDataset
+      args:
+        path_to_dataset: /scratch/shared/beegfs/rs/coco_inpainted/v4/test/small
+        split: "test"
+        method: "centernet"
+        image_transformation: "identity"
+    - name: coco_test_medium
+      class: InpatinedCocoDataset
+      args:
+        path_to_dataset: /scratch/shared/beegfs/rs/coco_inpainted/v4/test/medium
+        split: "test"
+        method: "centernet"
+        image_transformation: "identity"
+    - name: coco_test_large
+      class: InpatinedCocoDataset
+      args:
+        path_to_dataset: /scratch/shared/beegfs/rs/coco_inpainted/v4/test/large
+        split: "test"
+        method: "centernet"
+        image_transformation: "identity"
+    - name: synthtext
+      class: SynthTextDataset
+      args:
+        path_to_dataset: /scratch/shared/beegfs/rs/synth_text_bg
+        split: "test"
+        method: "centernet"
+    - name: std
+      class: StdDataset
+      args:
+        path_to_dataset: /scratch/shared/beegfs/rs/std
+        split: "test"
+        method: "centernet"
+        image_transformation: "identity"
+    - name: kubric
+      class: KubricChange
+      args:
+        path_to_dataset: /scratch/shared/beegfs/rs/kubric_change
+        split: "test"
+        method: "centernet"
+    - name: coco_test_all
+      class: ConcatDataset
+      datasets:
+        - name: coco_test_small
+          class: InpatinedCocoDataset
+          args:
+            path_to_dataset: /scratch/shared/beegfs/rs/coco_inpainted/v4/test/small
+            split: "test"
+            method: "centernet"
+            image_transformation: "identity"
+        - name: coco_test_medium
+          class: InpatinedCocoDataset
+          args:
+            path_to_dataset: /scratch/shared/beegfs/rs/coco_inpainted/v4/test/medium
+            split: "test"
+            method: "centernet"
+            image_transformation: "identity"
+        - name: coco_test_large
+          class: InpatinedCocoDataset
+          args:
+            path_to_dataset: /scratch/shared/beegfs/rs/coco_inpainted/v4/test/large
+            split: "test"
+            method: "centernet"
+            image_transformation: "identity"
