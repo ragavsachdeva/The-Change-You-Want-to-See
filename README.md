@@ -10,7 +10,7 @@ In Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vis
 
 ## Datasets
 
-Please use the following to download the datasets presented in this work.
+Please use the following to download the datasets presented in this work. The checksums can be found [here](https://thor.robots.ox.ac.uk/~vgg/data/cyws/SHA512SUMS).
 
 ### COCO-Inpainted
 
@@ -66,7 +66,7 @@ Note: This dataset was generated using [kubric](https://github.com/google-resear
 
 ### VIRAT-STD
 
-[Download original images using link provided by Jhamtani et al.](https://drive.google.com/file/d/1OVb4_3Uec_xbyUk90aWC6LFpKsIOtR7v/view?usp=sharing) + [Download our annotations as .gz](https://thor.robots.ox.ac.uk/~vgg/data/cyws/virat-annotations.npy.gz)
+[Download original images using link provided by Jhamtani et al.](https://drive.google.com/file/d/1OVb4_3Uec_xbyUk90aWC6LFpKsIOtR7v/view?usp=sharing) + [Download our annotations as .npy.gz](https://thor.robots.ox.ac.uk/~vgg/data/cyws/virat-annotations.npy.gz)
 
 
 ```
@@ -81,7 +81,7 @@ Note: The work by Jhamtani et al. can be found [here](https://github.com/harsh19
 
 ### Synthtext-Change
 
-[Download original bg images as .tar.gz](https://thor.robots.ox.ac.uk/~vgg/data/scenetext/preproc/bg_img.tar.gz) + [Download synthetic text images as .gz](https://thor.robots.ox.ac.uk/~vgg/data/cyws/synthtext-change.h5.gz)
+[Download original bg images as .tar.gz](https://thor.robots.ox.ac.uk/~vgg/data/scenetext/preproc/bg_img.tar.gz) + [Download synthetic text images as .h5.gz](https://thor.robots.ox.ac.uk/~vgg/data/cyws/synthtext-change.h5.gz)
 
 ```
 synthtext_change
@@ -93,7 +93,9 @@ synthtext_change
 
 Note: The code used to generate this dataset is modified from [here](https://github.com/ankush-me/SynthText).
 
-## Usage
+## Example Usage
+
+Disclaimer - Don't forget to update the `path_to_dataset` in the relevant config files.
 
 Training:
 
