@@ -47,6 +47,8 @@ coco_inpainted
 │   └───large/
 ```
 
+Note: We deemed it convenient to bundle the inpainted images along with their corresponding (original) COCO images here to allow for a single-click download. Please see [COCO Terms of Use](https://cocodataset.org/#termsofuse).
+
 ### Kubric-Change
 
 [Download as .tar](https://thor.robots.ox.ac.uk/~vgg/data/cyws/kubric-change.tar)
@@ -59,6 +61,8 @@ kubric_change
 |   mask_<index>_00001.png (change mask for image 2)
 |   ...
 ```
+
+Note: This dataset was generated using [kubric](https://github.com/google-research/kubric).
 
 ### VIRAT-STD
 
@@ -73,6 +77,7 @@ std
 |   ...
 ```
 
+Note: The work by Jhamtani et al. can be found [here](https://github.com/harsh19/spot-the-diff).
 
 ### Synthtext-Change
 
@@ -85,6 +90,8 @@ synthtext_change
 │   synthtext-change.h5 (images with synthetic text we generated)
 
 ```
+
+Note: The code used to generate this dataset is modified from [here](https://github.com/ankush-me/SynthText).
 
 ## Usage
 
