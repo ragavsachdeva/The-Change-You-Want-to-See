@@ -11,7 +11,7 @@ datasets:
     name: coco_train
     class: InpatinedCocoDataset
     args:
-      path_to_dataset: /scratch/shared/beegfs/rs/coco_inpainted/v4/train
+      path_to_dataset: /data_dir/coco_inpainted/train
       split: "train"
       method: "centernet"
       image_transformation: "affine"
@@ -19,7 +19,7 @@ datasets:
     name: coco_val
     class: InpatinedCocoDataset
     args:
-      path_to_dataset: /scratch/shared/beegfs/rs/coco_inpainted/v4/train
+      path_to_dataset: /data_dir/coco_inpainted/train
       split: "val"
       method: "centernet"
       image_transformation: "affine"
@@ -27,42 +27,42 @@ datasets:
     - name: coco_test_small
       class: InpatinedCocoDataset
       args:
-        path_to_dataset: /scratch/shared/beegfs/rs/coco_inpainted/v4/test/small
+        path_to_dataset: /data_dir/coco_inpainted/test/small
         split: "test"
         method: "centernet"
         image_transformation: "affine"
     - name: coco_test_medium
       class: InpatinedCocoDataset
       args:
-        path_to_dataset: /scratch/shared/beegfs/rs/coco_inpainted/v4/test/medium
+        path_to_dataset: /data_dir/coco_inpainted/test/medium
         split: "test"
         method: "centernet"
         image_transformation: "affine"
     - name: coco_test_large
       class: InpatinedCocoDataset
       args:
-        path_to_dataset: /scratch/shared/beegfs/rs/coco_inpainted/v4/test/large
+        path_to_dataset: /data_dir/coco_inpainted/test/large
         split: "test"
         method: "centernet"
         image_transformation: "affine"
     - name: synthtext
       class: SynthTextDataset
       args:
-        path_to_dataset: /scratch/shared/beegfs/rs/synth_text_bg
+        path_to_dataset: /data_dir/synthtext_change
         split: "test"
         method: "centernet"
         image_transformation: "identity"
     - name: std
       class: StdDataset
       args:
-        path_to_dataset: /scratch/shared/beegfs/rs/std
+        path_to_dataset: /data_dir/std
         split: "test"
         method: "centernet"
         image_transformation: "identity"
     - name: kubric
       class: KubricChange
       args:
-        path_to_dataset: /scratch/shared/beegfs/rs/kubric_change
+        path_to_dataset: /data_dir/kubric_change
         split: "test"
         method: "centernet"
     - name: coco_test_all
@@ -71,21 +71,21 @@ datasets:
         - name: coco_test_small
           class: InpatinedCocoDataset
           args:
-            path_to_dataset: /scratch/shared/beegfs/rs/coco_inpainted/v4/test/small
+            path_to_dataset: /data_dir/coco_inpainted/test/small
             split: "test"
             method: "centernet"
             image_transformation: "affine"
         - name: coco_test_medium
           class: InpatinedCocoDataset
           args:
-            path_to_dataset: /scratch/shared/beegfs/rs/coco_inpainted/v4/test/medium
+            path_to_dataset: /data_dir/coco_inpainted/test/medium
             split: "test"
             method: "centernet"
             image_transformation: "affine"
         - name: coco_test_large
           class: InpatinedCocoDataset
           args:
-            path_to_dataset: /scratch/shared/beegfs/rs/coco_inpainted/v4/test/large
+            path_to_dataset: /data_dir/coco_inpainted/test/large
             split: "test"
             method: "centernet"
             image_transformation: "affine"
