@@ -54,7 +54,7 @@ Note: We deemed it convenient to bundle the inpainted images along with their co
 [Download as .tar](https://thor.robots.ox.ac.uk/~vgg/data/cyws/kubric-change.tar)
 ```
 kubric_change
-│   metadata.npy (list of tuples containing image1_path, image2_path, mask1_path, mask2_path)
+│   metadata.npy (this is generated automatically the first time you load the dataset)
 │   <index>_0.png (image 1)
 |   <index>_1.png (image 2)
 |   mask_<index>_00000.png (change mask for image 1)
