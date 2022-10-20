@@ -1,5 +1,7 @@
 conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
-pip install segmentation-models-pytorch pytorch-lightning Cython matplotlib ninja opencv-python scikit-image wandb loguru yacs easydict kornia shapely pre-commit pycocotools h5py einops
+pip install pytorch-lightning Cython matplotlib ninja opencv-python scikit-image wandb loguru yacs easydict shapely pre-commit pycocotools h5py einops
+pip install segmentation-models-pytorch@git+https://github.com/ragavsachdeva/segmentation_models.pytorch.git@dc6009cc57f4d45662c4e838b5daf26663df4f7c
+pip install kornia@git+https://github.com/kornia/kornia@77589a58be6c603b7afd755d261783bd0c152a97
 python -m pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu113/torch1.10/index.html
 
 Please find our output of "pip freeze" below.
