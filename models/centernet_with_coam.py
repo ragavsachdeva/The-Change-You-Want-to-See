@@ -15,7 +15,7 @@ import utils.logging
 import wandb
 from data.datamodule import DataModule
 from models.coattention import CoAttentionModule
-from models.unet import Unet
+from segmentation_models_pytorch.unet.model import Unet
 from utils.voc_eval import BoxList, eval_detection_voc
 
 plt.ioff()
