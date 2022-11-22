@@ -181,8 +181,6 @@ class InpatinedCocoDataset(Dataset):
             image2_image_as_tensor,
             transformed_image1_target_annotations,
             transformed_image2_target_annotations,
-            target_image1_region_as_coco_annotation,
-            target_image2_region_as_coco_annotation,
         ) = self.image_augmentations(
             image1_image_as_tensor,
             image2_image_as_tensor,
@@ -195,6 +193,4 @@ class InpatinedCocoDataset(Dataset):
             "image2": image2_image_as_tensor.squeeze(),
             "image1_target_annotations": transformed_image1_target_annotations,
             "image2_target_annotations": transformed_image2_target_annotations,
-            "image1_target_region_as_coco_annotation": target_image1_region_as_coco_annotation,
-            "image2_target_region_as_coco_annotation": target_image2_region_as_coco_annotation,
         }

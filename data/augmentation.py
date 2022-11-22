@@ -102,7 +102,6 @@ class AugmentationPipeline(nn.Module):
         segmentations_as_shapely_objects = (
             utils.geometry.get_segmentation_as_shapely_polygons_from_coco_annotations(annotations)
         )
-        image_edges_as_shapely_object = shapely.geometry.box(0, 0, *image_shape_as_hw[::-1])
         ############
         ## Step 1 ##
         ############
@@ -129,22 +128,6 @@ class AugmentationPipeline(nn.Module):
         image2_segmentations_transformed = (
             utils.geometry.apply_kornia_transformation_to_shapely_objects(
                 segmentations_as_shapely_objects,
-                image2_image_transformation,
-                image_shape_as_hw,
-                keep_empty=True,
-            )
-        )
-        image1_image_edges_transformed = (
-            utils.geometry.apply_kornia_transformation_to_shapely_objects(
-                image_edges_as_shapely_object,
-                image1_image_transformation,
-                image_shape_as_hw,
-                keep_empty=True,
-            )
-        )
-        image2_image_edges_transformed = (
-            utils.geometry.apply_kornia_transformation_to_shapely_objects(
-                image_edges_as_shapely_object,
                 image2_image_transformation,
                 image_shape_as_hw,
                 keep_empty=True,
@@ -180,36 +163,11 @@ class AugmentationPipeline(nn.Module):
                 image1.intersection(image2)
             )
             intersection_of_segmentations.append(intersection_segmentation)
-        image1_image_edges_transformed_inverted = (
-            utils.geometry.apply_kornia_transformation_to_shapely_objects(
-                image1_image_edges_transformed,
-                image1_image_inverse_transformation,
-                image_shape_as_hw,
-                keep_empty=True,
-            )
-        )
-        image2_image_edges_transformed_inverted = (
-            utils.geometry.apply_kornia_transformation_to_shapely_objects(
-                image2_image_edges_transformed,
-                image2_image_inverse_transformation,
-                image_shape_as_hw,
-                keep_empty=True,
-            )
-        )
-        intersection_of_image_edges = image1_image_edges_transformed_inverted.intersection(
-            image2_image_edges_transformed_inverted
-        )
         ############
         ## Step 4 ##
         ############
         target_image1_segmentations = utils.geometry.apply_kornia_transformation_to_shapely_objects(
             intersection_of_segmentations,
-            image1_image_transformation,
-            image_shape_as_hw,
-            keep_empty=True,
-        )
-        target_image1_region = utils.geometry.apply_kornia_transformation_to_shapely_objects(
-            intersection_of_image_edges,
             image1_image_transformation,
             image_shape_as_hw,
             keep_empty=True,
@@ -220,34 +178,18 @@ class AugmentationPipeline(nn.Module):
             image_shape_as_hw,
             keep_empty=True,
         )
-        target_image2_region = utils.geometry.apply_kornia_transformation_to_shapely_objects(
-            intersection_of_image_edges,
-            image2_image_transformation,
-            image_shape_as_hw,
-            keep_empty=True,
-        )
         transformed_image1_annotations = utils.geometry.merge_shapely_polygons_into_annotations(
             target_image1_segmentations, annotations
         )
         transformed_image2_annotations = utils.geometry.merge_shapely_polygons_into_annotations(
             target_image2_segmentations, annotations
         )
-        target_image1_region_as_coco_annotation = {}
-        target_image1_region_as_coco_annotation[
-            "segmentation"
-        ] = utils.geometry.convert_shapely_polygon_into_coco_segmentation(target_image1_region)
-        target_image2_region_as_coco_annotation = {}
-        target_image2_region_as_coco_annotation[
-            "segmentation"
-        ] = utils.geometry.convert_shapely_polygon_into_coco_segmentation(target_image2_region)
 
         return (
             image1_image_transformed,
             image2_image_transformed,
             transformed_image1_annotations,
             transformed_image2_annotations,
-            target_image1_region_as_coco_annotation,
-            target_image2_region_as_coco_annotation,
         )
 
     def forward_identity(
@@ -261,11 +203,9 @@ class AugmentationPipeline(nn.Module):
         Unlike forward_transformed(), here we just return the original images with
         colour jittering and annotations in the correct format.
         """
-        image_shape_as_hw = image1_image_as_tensor.shape[-2:]
         segmentations_as_shapely_objects = (
             utils.geometry.get_segmentation_as_shapely_polygons_from_coco_annotations(annotations)
         )
-        image_edges_as_shapely_object = shapely.geometry.box(0, 0, *image_shape_as_hw[::-1])
         (image1_image_transformed, _) = self.kornia_augmentation_function(
             image1_image_as_tensor, "original", image_index
         )
@@ -278,26 +218,11 @@ class AugmentationPipeline(nn.Module):
         transformed_image2_annotations = utils.geometry.merge_shapely_polygons_into_annotations(
             segmentations_as_shapely_objects, annotations
         )
-        target_image1_region_as_coco_annotation = {}
-        target_image1_region_as_coco_annotation[
-            "segmentation"
-        ] = utils.geometry.convert_shapely_polygon_into_coco_segmentation(
-            image_edges_as_shapely_object
-        )
-        target_image2_region_as_coco_annotation = {}
-        target_image2_region_as_coco_annotation[
-            "segmentation"
-        ] = utils.geometry.convert_shapely_polygon_into_coco_segmentation(
-            image_edges_as_shapely_object
-        )
-
         return (
             image1_image_transformed,
             image2_image_transformed,
             transformed_image1_annotations,
             transformed_image2_annotations,
-            target_image1_region_as_coco_annotation,
-            target_image2_region_as_coco_annotation,
         )
 
     def forward_registered(
@@ -313,7 +238,6 @@ class AugmentationPipeline(nn.Module):
         segmentations_as_shapely_objects = (
             utils.geometry.get_segmentation_as_shapely_polygons_from_coco_annotations(annotations)
         )
-        image_edges_as_shapely_object = shapely.geometry.box(0, 0, *image_shape_as_hw[::-1])
         ############
         ## Step 1 ##
         ############
@@ -340,22 +264,6 @@ class AugmentationPipeline(nn.Module):
         image2_segmentations_transformed = (
             utils.geometry.apply_kornia_transformation_to_shapely_objects(
                 segmentations_as_shapely_objects,
-                image2_image_transformation,
-                image_shape_as_hw,
-                keep_empty=True,
-            )
-        )
-        image1_image_edges_transformed = (
-            utils.geometry.apply_kornia_transformation_to_shapely_objects(
-                image_edges_as_shapely_object,
-                image1_image_transformation,
-                image_shape_as_hw,
-                keep_empty=True,
-            )
-        )
-        image2_image_edges_transformed = (
-            utils.geometry.apply_kornia_transformation_to_shapely_objects(
-                image_edges_as_shapely_object,
                 image2_image_transformation,
                 image_shape_as_hw,
                 keep_empty=True,
@@ -406,25 +314,6 @@ class AugmentationPipeline(nn.Module):
                 image1.intersection(image2)
             )
             intersection_of_segmentations.append(intersection_segmentation)
-        image1_image_edges_transformed_inverted = (
-            utils.geometry.apply_kornia_transformation_to_shapely_objects(
-                image1_image_edges_transformed,
-                image1_image_inverse_transformation,
-                image_shape_as_hw,
-                keep_empty=True,
-            )
-        )
-        image2_image_edges_transformed_inverted = (
-            utils.geometry.apply_kornia_transformation_to_shapely_objects(
-                image2_image_edges_transformed,
-                image2_image_inverse_transformation,
-                image_shape_as_hw,
-                keep_empty=True,
-            )
-        )
-        intersection_of_image_edges = image1_image_edges_transformed_inverted.intersection(
-            image2_image_edges_transformed_inverted
-        )
         ############
         ## Step 4 ##
         ############
@@ -434,24 +323,10 @@ class AugmentationPipeline(nn.Module):
         transformed_image2_annotations = utils.geometry.merge_shapely_polygons_into_annotations(
             intersection_of_segmentations, annotations
         )
-        target_image1_region_as_coco_annotation = {}
-        target_image1_region_as_coco_annotation[
-            "segmentation"
-        ] = utils.geometry.convert_shapely_polygon_into_coco_segmentation(
-            intersection_of_image_edges
-        )
-        target_image2_region_as_coco_annotation = {}
-        target_image2_region_as_coco_annotation[
-            "segmentation"
-        ] = utils.geometry.convert_shapely_polygon_into_coco_segmentation(
-            intersection_of_image_edges
-        )
 
         return (
             image1_image_transformed,
             image2_image_transformed,
             transformed_image1_annotations,
             transformed_image2_annotations,
-            target_image1_region_as_coco_annotation,
-            target_image2_region_as_coco_annotation,
         )

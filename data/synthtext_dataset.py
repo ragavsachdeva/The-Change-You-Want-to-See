@@ -152,14 +152,4 @@ class SynthTextDataset(Dataset):
             "image2": synth_image_as_tensor.squeeze(),
             "image1_target_annotations": target_annotations_1,
             "image2_target_annotations": target_annotations_2,
-            "image1_target_region_as_coco_annotation": {
-                "segmentation": utils.geometry.convert_shapely_polygon_into_coco_segmentation(
-                    shapely.geometry.box(0, 0, *original_image_as_tensor.shape[::-1])
-                )
-            },
-            "image2_target_region_as_coco_annotation": {
-                "segmentation": utils.geometry.convert_shapely_polygon_into_coco_segmentation(
-                    shapely.geometry.box(0, 0, *original_image_as_tensor.shape[::-1])
-                )
-            },
         }

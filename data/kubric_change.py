@@ -116,14 +116,4 @@ class KubricChange(Dataset):
             "image2": image2_as_tensor.squeeze(),
             "image1_target_annotations": image1_target_annotation,
             "image2_target_annotations": image2_target_annotation,
-            "image1_target_region_as_coco_annotation": {
-                "segmentation": utils.geometry.convert_shapely_polygon_into_coco_segmentation(
-                    shapely.geometry.box(0, 0, *image1_as_tensor.shape[::-1])
-                )
-            },
-            "image2_target_region_as_coco_annotation": {
-                "segmentation": utils.geometry.convert_shapely_polygon_into_coco_segmentation(
-                    shapely.geometry.box(0, 0, *image2_as_tensor.shape[::-1])
-                )
-            },
         }
