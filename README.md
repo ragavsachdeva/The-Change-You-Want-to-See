@@ -13,7 +13,7 @@ In Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vis
 Option 1:
 
 ```
-conda env create --file requirements.yml
+conda env create --file requirements/option1.yml
 conda activate cyws
 python -m pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu113/torch1.10/index.html
 ```
@@ -23,7 +23,7 @@ Option 2:
 conda create -n cyws python=3.9
 conda activate cyws
 conda install -c pytorch pytorch=1.10.1 torchvision=0.11.2 cudatoolkit=11.3.1
-pip install -r requirements.txt
+pip install -r requirements/option2.txt
 conda install setuptools=58.2.0
 pip install mmdet==2.20.0
 mim install mmcv-full==1.4.4
