@@ -8,6 +8,14 @@ In Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vis
 
 ![results](figures/results.png)
 
+## Installation
+
+```
+conda env create --file requirements.yml
+conda activate cyws
+python -m pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu113/torch1.10/index.html
+```
+
 ## Datasets
 
 Please use the following to download the datasets presented in this work. The checksums can be found [here](https://thor.robots.ox.ac.uk/~vgg/data/cyws/SHA512SUMS).
@@ -113,6 +121,10 @@ The codebase is heavily tied in with [Pytorch Lightning](https://www.pytorchligh
 Testing:
 
 `python main.py --method centernet --gpus 2 --config_file configs/detection_resnet50_3x_coam_layers_affine.yml --decoder_attention scse --test_from_checkpoint <path>`
+
+Demo/Inference:
+
+`python demo_single_pair.py --load_weights_from <path_to_checkpoint> --config_file configs/detection_resnet50_3x_coam_layers_affine.yml --decoder_attention scse`
 
 ### Pre-trained model
 

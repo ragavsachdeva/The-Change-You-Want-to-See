@@ -113,7 +113,6 @@ if __name__ == "__main__":
         shuffle=False,
         collate_fn=import_dataloader_collate_fn("centernet"),
     )
-    dataset[0]
 
     model = CenterNetWithCoAttention(configs)
     model.eval()
