@@ -1,3 +1,10 @@
+> ### Check out our follow up work:
+> The Change You Want to See (Now in 3D)
+>
+> Ragav Sachdeva, Andrew Zisserman
+>
+> **[[Paper]](https://arxiv.org/abs/2308.10417) [[Code]](https://github.com/ragavsachdeva/CYWS-3D)**
+
 # [The Change You Want to See](https://www.robots.ox.ac.uk/~vgg/research/cyws/)
 
 [[Project Page]](https://www.robots.ox.ac.uk/~vgg/research/cyws/) [[arXiv]](https://arxiv.org/abs/2209.14341)
