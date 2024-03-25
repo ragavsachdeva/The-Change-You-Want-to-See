@@ -26,7 +26,7 @@ pip install matplotlib Shapely==1.8.0 easydict pytorch-lightning==1.5.8 loguru s
 python -m pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu113/torch1.10/index.html
 pip install mmcv-full==1.7.0 -f https://download.openmmlab.com/mmcv/dist/cu113/torch1.10/index.html
 pip install mmdet==2.28.2 wandb
-pip install segmentation-models-pytorch@git+https://github.com/ragavsachdeva/segmentation_models.pytorch.git@0092ee4d6f851d89a4a401bb2dfa6187660b8dd3pi
+pip install segmentation-models-pytorch@git+https://github.com/ragavsachdeva/segmentation_models.pytorch.git@0092ee4d6f851d89a4a401bb2dfa6187660b8dd3
 pip install imageio==2.13.5
 ```
 
